@@ -1,0 +1,6 @@
+.header {
+  box-sizing: border-box;
+  max-width: 1280px;
+  padding: 18px 70px;
+  margin: 0 auto;
+}
