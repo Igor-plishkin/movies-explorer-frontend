@@ -37,3 +37,58 @@
 .promo__link:last-child{
   margin-right: 0;
 }
+.about{
+  box-sizing: border-box;
+  max-width: 1280px;
+  padding: 110px 70px;
+  margin: 0 auto;
+}
+.about__title{
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 400;
+  margin: 0 0 23px;
+}
+.about__content{
+  margin: 70px 0 110px;
+  display: grid;
+  grid-template-columns: repeat(2, 550px);
+  column-gap: 40px;
+  row-gap: 26px;
+}
+.about__main-text{
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.about__sub-text{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.about__timeline{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  text-align: center;
+  row-gap: 14px;
+}
+.about__time{
+  padding: 9px 0;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+}
+.about__time_one-week{
+  background-color: #2BE080;
+}
+.about__time_four-weeks{
+  background-color: #F2F2F2;
+}
+.about__sub-time{
+  color: #A0A0A0;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+}
