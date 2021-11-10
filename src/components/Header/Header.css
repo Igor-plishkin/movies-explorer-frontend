@@ -3,4 +3,25 @@
   max-width: 1280px;
   padding: 18px 70px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__singin{
+  color: #000;
+  margin-right: 30px;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 12px;
+  text-decoration: none;
+}
+.header__singup{
+  color: #000;
+  background-color: #2BE080;
+  padding: 8px 20px;
+  border-radius: 3px;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 12px;
+  text-decoration: none;
 }
