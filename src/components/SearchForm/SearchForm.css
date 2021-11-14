@@ -5,6 +5,10 @@
   border-radius: 9px;
   padding: 16px 30px 16px 19px;
   align-items: center;
+  transition: box-shadow .5s;
+}
+.search_focus{
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.3);
 }
 .search__icon{
   margin-right: 3px;
