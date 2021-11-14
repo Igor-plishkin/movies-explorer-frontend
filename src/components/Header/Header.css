@@ -7,21 +7,38 @@
   justify-content: space-between;
   align-items: center;
 }
-.header__singin{
+.header__link{
   color: #000;
-  margin-right: 30px;
   font-weight: 500;
   line-height: 16px;
   font-size: 12px;
   text-decoration: none;
 }
-.header__singup{
-  color: #000;
+.header__link_singin{
+  margin-right: 30px;
+}
+.header__link_singup{
   background-color: #2BE080;
   padding: 8px 20px;
   border-radius: 3px;
-  font-weight: 500;
-  line-height: 16px;
-  font-size: 12px;
-  text-decoration: none;
+}
+.header__link_films{
+  font-size: 13px;
+  line-height: 18px;
+  margin-right: 16px;
+}
+.header__link_saved-films{
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.header__link_account{
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  font-size: 13px;
+  line-height: 12px;
+  padding: 10px 10px 10px 11px;
+  border-radius: 40px;
+}
+.header__account-icon{
+  margin-left: 14px;
 }
