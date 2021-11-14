@@ -7,3 +7,9 @@
   background-color: #000;
   border: none;
 }
+.horizontal-line_grey{
+  background-color: #E8E8E8;
+}
+.horizontal-line_portfolio{
+  margin-bottom: 20px;
+}

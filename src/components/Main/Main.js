@@ -25,7 +25,7 @@ function Main() {
       </section>
       <section className="project section">
         <h2 className="section-title section-title_project">О проекте</h2>
-        <hr className="horizontal-line" />
+        <div className="horizontal-line" />
         <div className="project__content">
           <p className="project__main-text">
             Дипломный проект включал 5 этапов
@@ -51,7 +51,7 @@ function Main() {
       </section>
       <section className="techs section">
         <h2 className="section-title section-title_techs">Технологии</h2>
-        <hr className="horizontal-line" />
+        <div className="horizontal-line" />
         <div className="techs__content">
           <p className="techs__title-text">7 технологий</p>
           <p className="techs__text">
@@ -71,18 +71,53 @@ function Main() {
       </section>
       <section className="student section">
         <h2 className="section-title section-title_student">Студент</h2>
-        <hr className="horizontal-line" />
+        <div className="horizontal-line" />
         <div className="student__wrapper">
           <div className="student__content">
             <p className="student__name">Виталий</p>
             <p className="student__position">Фронтенд-разработчик, 30 лет</p>
-            <p className="student__description">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
-и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-            <Link className="student__link" to="#">Facebook</Link>
-            <Link className="student__link" to="#">Github</Link>
+            <p className="student__description">
+              Я родился и живу в Саратове, закончил факультет экономики СГУ. У
+              меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
+              бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
+              Контур». После того, как прошёл курс по веб-разработке, начал
+              заниматься фриланс-заказами и ушёл с постоянной работы.
+            </p>
+            <Link className="student__link" to="#">
+              Facebook
+            </Link>
+            <Link className="student__link" to="#">
+              Github
+            </Link>
           </div>
-          <img src={studentPhoto} alt="Фото студента" className="student__image" />
+          <img
+            src={studentPhoto}
+            alt="Фото студента"
+            className="student__image"
+          />
         </div>
+      </section>
+      <section className="portfolio section">
+        <h2 className="section-title section-title_portfolio">Портфолио</h2>
+        <ul className="portfolio__list">
+          <li className="portfolio__item">
+            <p className="portfolio__name">Статичный сайт</p>
+            <Link className="portfolio__link" to="#">
+            </Link>
+          </li>
+          <div className="horizontal-line horizontal-line_grey horizontal-line_portfolio" />
+          <li className="portfolio__item">
+            <p className="portfolio__name">Адаптивный сайт</p>
+            <Link className="portfolio__link" to="#">
+            </Link>
+          </li>
+          <div className="horizontal-line horizontal-line_grey horizontal-line_portfolio" />
+          <li className="portfolio__item">
+            <p className="portfolio__name">Одностраничное приложение</p>
+            <Link className="portfolio__link" to="#">
+            </Link>
+          </li>
+        </ul>
       </section>
     </>
   );
