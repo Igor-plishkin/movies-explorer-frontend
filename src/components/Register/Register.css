@@ -1,0 +1,13 @@
+.register{
+  padding: 70px 30px;
+  max-width: 456px;
+}
+.register .header__logo{
+  margin-bottom: 40px;
+}
+.register__title{
+  margin: 0 0 40px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
