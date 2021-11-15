@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Form.css";
 
-function Form({ isRegistration, buttonText, linkText, linkTo, linkSpan }) {
+function Form({ isRegistration, buttonText, linkText, linkTo, subText }) {
   return (
     <form className="form">
       {isRegistration && (
@@ -23,7 +23,7 @@ function Form({ isRegistration, buttonText, linkText, linkTo, linkSpan }) {
         <span className="form__error form__error_active">Что-то пошло не так...</span>
       </div>
       <button className="form__button">{buttonText}</button>
-      <Link className="form__link" to={linkTo}>{linkText}<span className="form__span">{linkSpan}</span></Link>
+      <p className="form__sub-text">{subText}<Link className="form__link" to={linkTo}>{linkText}</Link></p>
     </form>
   );
 }

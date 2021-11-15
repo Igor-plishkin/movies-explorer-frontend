@@ -59,15 +59,21 @@
 .form__button:hover {
   background-color: rgba(218, 91, 50, 1);
 }
-.form__link {
+.form__sub-text {
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   align-self: center;
-  text-decoration: none;
+  margin: 0;
   color: #a0a0a0;
 }
-.form__span{
+.form__link {
   margin-left: 6px;
-  color: #FF6838;
+  color: #ff6838;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .5s;
+}
+.form__link:hover{
+  color: rgba(218, 91, 50, 1);
 }

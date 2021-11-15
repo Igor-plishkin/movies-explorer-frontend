@@ -10,9 +10,9 @@ function Register() {
       <Form
         isRegistration={true}
         buttonText="Зарегистрироваться"
-        linkText="Уже зарегистрированы?"
+        subText="Уже зарегистрированы?"
         linkTo="/sign-in"
-        linkSpan="Войти"
+        linkText="Войти"
       />
     </section>
   );
