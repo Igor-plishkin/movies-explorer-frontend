@@ -8,7 +8,7 @@ function Header() {
     <header className="header">
       <img src={logo} alt="Логотип" className="header__logo" />
 
-      {false ? (
+      {true ? (
         <div className="header__login">
           <Link className="header__link header__link_singin" to="/sign-in">
             Регистрация
