@@ -12,15 +12,15 @@ import NotFound from "../NotFound/NotFound";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Main />
+      {/* <Header /> */}
+      {/* <Main /> */}
       {/* <Movies /> */}
       {/* <SavedMovies /> */}
       {/* <Profile /> */}
       {/* <Register /> */}
       {/* <Login /> */}
-      {/* <NotFound/> */}
-      <Footer />
+      <NotFound/>
+      {/* <Footer /> */}
     </div>
   );
 }

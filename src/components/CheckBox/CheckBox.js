@@ -2,8 +2,7 @@ import "./CheckBox.css";
 
 function CheckBox() {
   return (
-    <label className="checkbox__wrapper" htmlFor="short-films">
-      
+    <label className="checkbox" htmlFor="short-films">
       <input
         className="checkbox__input"
         type="checkbox"

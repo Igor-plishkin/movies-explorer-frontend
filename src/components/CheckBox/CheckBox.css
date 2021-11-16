@@ -1,4 +1,4 @@
-.checkbox__wrapper{
+.checkbox{
   margin-left: 29px;
   display: flex;
   align-items: center;
@@ -40,4 +40,16 @@
 }
 .checkbox__input:checked + .checkbox__visible::before{
   left: 18px;
+}
+@media screen and (max-width: 920px) {
+  .checkbox{
+    margin-left: 19px;
+  }
+}
+@media screen and (max-width: 620px) {
+  .checkbox{
+    position: absolute;
+    margin-left: 0;
+    bottom: -64px;
+  }
 }

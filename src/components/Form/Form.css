@@ -72,8 +72,20 @@
   color: #ff6838;
   text-decoration: none;
   cursor: pointer;
-  transition: color .5s;
+  transition: color 0.5s;
 }
-.form__link:hover{
+.form__link:hover {
   color: rgba(218, 91, 50, 1);
+}
+@media screen and (max-width: 460px) {
+  .form__field_last_registration {
+    margin-bottom: 157px;
+  }
+  .form__field_last_login {
+    margin-bottom: 245px;
+  }
+  .form__sub-text {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }

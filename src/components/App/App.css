@@ -16,7 +16,7 @@
   padding: 70px 70px 69px;
 }
 .section_movies{
-  padding: 80px 70px;
+  padding: 0px 70px 80px;
 }
 .horizontal-line{
   height: 1px;
@@ -33,14 +33,39 @@
 .horizontal-line_profile{
   margin-bottom: 17px;
 }
+.horizontal-line_movies{
+  margin-bottom: 80px;
+}
 .vertical-line{
   height: 40px;
   width: 1px;
   background-color: #CBCBCB;
 }
+@media screen and (max-width: 920px) {
+  .section_movies{
+    padding: 0 30px 80px;
+  }
+  .section_search{
+    padding: 80px 30px 109px;
+  }
+}
+@media screen and (max-width: 620px) {
+  .vertical-line{
+    display: none;
+  }
+}
 @media screen and (max-width: 425px) {
   .section-title{
     font-size: 18px;
     line-height: 22px;
+  }
+  .section_movies{
+    padding: 0 10px 80px;
+  }
+  .horizontal-line_movies{
+    margin-bottom: 50px;
+  }
+  .section_search{
+    padding: 80px 10px 45px;
   }
 }

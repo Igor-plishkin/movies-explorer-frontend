@@ -54,3 +54,14 @@
 .profile__edit-btn:hover, .profile__sing-out:hover{
   opacity: .5;
 }
+@media screen and (max-width: 460px){
+  .profile{
+    padding: 70px 30px 40px;
+  }
+  .profile__title{
+    margin-bottom: 80px;
+  }
+  .profile__form-field{
+    margin-bottom: 379px;
+  }
+}
