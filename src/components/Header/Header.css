@@ -51,6 +51,19 @@
 .header__navigation{
   margin-left: 60px;
 }
+.header__burger-btn{
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/burger.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+}
+.header__burger-btn_active{
+  opacity: 0;
+}
 @media screen and (max-width: 1024px){
   .header{
     padding: 18px 35px;
