@@ -8,6 +8,18 @@
   align-items: center;
   text-align: center;
 }
+.header__logo{
+  background-image: url(../../images/logo.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  transition: transform .8s;
+}
+.header__logo:hover{
+  transform: translateY(10px);
+}
 .header__link{
   color: #000;
   font-weight: 500;
@@ -15,6 +27,10 @@
   font-size: 12px;
   text-decoration: none;
   cursor: pointer;
+  transition: opacity .5s;
+}
+.header__link:hover{
+  opacity: .8;
 }
 .header__link_singin{
   margin-right: 30px;

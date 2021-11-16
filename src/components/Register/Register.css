@@ -4,6 +4,9 @@
 }
 .register .header__logo {
   margin-bottom: 40px;
+  width: 38px;
+  height: 38px;
+  display: inline-block;
 }
 .register__title {
   margin: 0 0 40px;

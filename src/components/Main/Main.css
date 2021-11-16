@@ -30,6 +30,11 @@
   width: 96px;
   display: inline-block;
   text-align: center;
+  cursor: pointer;
+  transition: transform .5s;
+}
+.promo__link:hover{
+  transform: scale(1.2);
 }
 .promo__link:last-child {
   margin-right: 0;
@@ -169,9 +174,14 @@
   margin-right: 20px;
   color: #000;
   text-decoration: none;
+  cursor: pointer;
+  transition: opacity .5s;
 }
 .student__link:last-child {
   margin-right: 0;
+}
+.student__link:hover{
+  opacity: .7;
 }
 .student__image {
   border-radius: 10px;
@@ -210,6 +220,11 @@
   height: 60px;
   background-repeat: no-repeat;
   background-position: center center;
+  cursor: pointer;
+  transition: transform .5s;
+}
+.portfolio__link:hover{
+  transform: scale(1.2);
 }
 @media screen and (max-width: 1024px) {
   .promo {

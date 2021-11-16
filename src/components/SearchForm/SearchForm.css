@@ -42,6 +42,10 @@
   cursor: pointer;
   margin-left: auto;
   margin-right: 19px;
+  transition: opacity .6s;
+}
+.search__submit:hover{
+  opacity: .8;
 }
 @media screen and (max-width: 920px) {
   .search {

@@ -1,17 +1,17 @@
 import "./Login.css";
-import logo from "../../images/logo.svg";
 import Form from "../Form/Form";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
     <section className="section register">
-      <img src={logo} alt="Логотип" className="header__logo" />
+      <Link className="header__logo" to="/" />
       <h3 className="register__title">Рады видеть!</h3>
       <Form
         isRegistration={false}
         buttonText="Войти"
         subText="Ещё не зарегистрированы?"
-        linkTo="/sign-up"
+        linkTo="/signup"
         linkText="Регистрация"
       />
     </section>

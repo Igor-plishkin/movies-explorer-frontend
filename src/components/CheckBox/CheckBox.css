@@ -34,6 +34,7 @@
   left: 2px;
   top: 2px;
   transition: all .5s;
+  cursor: pointer;
 }
 .checkbox__input:checked + .checkbox__visible{
   background-color: #2BE080;

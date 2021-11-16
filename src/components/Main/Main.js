@@ -1,5 +1,4 @@
 import "./Main.css";
-import { Link } from "react-router-dom";
 import studentPhoto from "../../images/student.jpg";
 
 function Main() {
@@ -11,19 +10,19 @@ function Main() {
             Учебный проект студента факультета Веб-разработки.
           </h1>
           <nav className="promo__nav">
-            <Link className="promo__link" to="#">
+            <a className="promo__link" href="#project">
               О проекте
-            </Link>
-            <Link className="promo__link" to="#">
+            </a>
+            <a className="promo__link" href="#techs" hrefLang="#techs">
               Технологии
-            </Link>
-            <Link className="promo__link" to="#">
+            </a>
+            <a className="promo__link" href="#student">
               Студент
-            </Link>
+            </a>
           </nav>
         </div>
       </section>
-      <section className="project section">
+      <section className="project section" id="project">
         <h2 className="section-title section-title_project">О проекте</h2>
         <div className="horizontal-line" />
         <div className="project__content">
@@ -50,7 +49,7 @@ function Main() {
           <span className="project__sub-time">Front-end</span>
         </div>
       </section>
-      <section className="techs section">
+      <section className="techs section" id="techs">
         <h2 className="section-title section-title_techs">Технологии</h2>
         <div className="horizontal-line" />
         <div className="techs__content">
@@ -70,7 +69,7 @@ function Main() {
           </ul>
         </div>
       </section>
-      <section className="student section">
+      <section className="student section" id="student">
         <h2 className="section-title section-title_student">Студент</h2>
         <div className="horizontal-line" />
         <div className="student__wrapper">
@@ -84,12 +83,15 @@ function Main() {
               Контур». После того, как прошёл курс по веб-разработке, начал
               заниматься фриланс-заказами и ушёл с постоянной работы.
             </p>
-            <Link className="student__link" to="#">
-              Facebook
-            </Link>
-            <Link className="student__link" to="#">
+            <a className="student__link" href="https://vk.com/amazlngman">
+              vk
+            </a>
+            <a
+              className="student__link"
+              href="https://github.com/Igor-plishkin"
+            >
               Github
-            </Link>
+            </a>
           </div>
           <img
             src={studentPhoto}
@@ -103,17 +105,26 @@ function Main() {
         <ul className="portfolio__list">
           <li className="portfolio__item">
             <p className="portfolio__name">Статичный сайт</p>
-            <Link className="portfolio__link" to="#"></Link>
+            <a
+              className="portfolio__link"
+              href="https://igor-plishkin.github.io/how-to-learn/"
+            ></a>
           </li>
           <div className="horizontal-line horizontal-line_grey horizontal-line_portfolio" />
           <li className="portfolio__item">
             <p className="portfolio__name">Адаптивный сайт</p>
-            <Link className="portfolio__link" to="#"></Link>
+            <a
+              className="portfolio__link"
+              href="https://igor-plishkin.github.io/russian-travel/"
+            ></a>
           </li>
           <div className="horizontal-line horizontal-line_grey horizontal-line_portfolio" />
           <li className="portfolio__item">
             <p className="portfolio__name">Одностраничное приложение</p>
-            <Link className="portfolio__link" to="#"></Link>
+            <a
+              className="portfolio__link"
+              href="https://github.com/Igor-plishkin/react-mesto-api-full"
+            ></a>
           </li>
         </ul>
       </section>
