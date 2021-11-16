@@ -20,7 +20,7 @@ function App() {
       {/* <Register /> */}
       {/* <Login /> */}
       {/* <NotFound/> */}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
