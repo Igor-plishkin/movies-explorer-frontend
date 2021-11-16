@@ -38,3 +38,9 @@
   width: 1px;
   background-color: #CBCBCB;
 }
+@media screen and (max-width: 425px) {
+  .section-title{
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

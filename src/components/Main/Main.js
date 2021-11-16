@@ -30,12 +30,13 @@ function Main() {
           <p className="project__main-text">
             Дипломный проект включал 5 этапов
           </p>
-          <p className="project__main-text">
-            На выполнение диплома ушло 5 недель
-          </p>
+
           <p className="project__sub-text">
             Составление плана, работу над бэкендом, вёрстку, добавление
             функциональности и финальные доработки.
+          </p>
+          <p className="project__main-text">
+            На выполнение диплома ушло 5 недель
           </p>
           <p className="project__sub-text">
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
@@ -102,20 +103,17 @@ function Main() {
         <ul className="portfolio__list">
           <li className="portfolio__item">
             <p className="portfolio__name">Статичный сайт</p>
-            <Link className="portfolio__link" to="#">
-            </Link>
+            <Link className="portfolio__link" to="#"></Link>
           </li>
           <div className="horizontal-line horizontal-line_grey horizontal-line_portfolio" />
           <li className="portfolio__item">
             <p className="portfolio__name">Адаптивный сайт</p>
-            <Link className="portfolio__link" to="#">
-            </Link>
+            <Link className="portfolio__link" to="#"></Link>
           </li>
           <div className="horizontal-line horizontal-line_grey horizontal-line_portfolio" />
           <li className="portfolio__item">
             <p className="portfolio__name">Одностраничное приложение</p>
-            <Link className="portfolio__link" to="#">
-            </Link>
+            <Link className="portfolio__link" to="#"></Link>
           </li>
         </ul>
       </section>
