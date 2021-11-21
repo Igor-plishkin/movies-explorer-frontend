@@ -9,8 +9,19 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import { Route, Routes } from "react-router-dom";
+import getMovies from "../../utils/MainApi";
+import React from "react";
 
 function App() {
+  const [movies, setMovies] = React.useState([]);
+
+  React.useEffect(() => {
+    getMovies().then((res) => {
+      console.log(res);
+      setMovies(res);
+    });
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -28,7 +39,7 @@ function App() {
           path="/movies"
           element={
             <>
-              <Movies /> <Footer />
+              <Movies movies={movies} /> <Footer />
             </>
           }
         />
