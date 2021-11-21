@@ -1,60 +1,61 @@
-.card{
+.card {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
   padding-bottom: 14px;
   box-sizing: border-box;
 }
-.card__image{
-  width: 100%;
-  min-height: 151px;
+.card__image {
+  height: 151px;
   border-radius: 10px 10px 0 0;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-bottom: 14px;
-  background-image: url(../../images/card-image.jpg);
+  object-fit: cover;
+  width: 100%;
 }
-.card__footer{
+.card__link {
+  margin-bottom: 14px;
+  cursor: pointer;
+  display: block;
+}
+.card__footer {
   display: flex;
   justify-content: space-between;
   padding: 0 12px;
   margin-bottom: 10px;
 }
-.card__name{
+.card__name {
   font-size: 13px;
   line-height: 16px;
   font-weight: 500;
   margin: 0;
 }
-.card__save{
+.card__save {
   width: 16px;
   height: 16px;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   border: solid 2px #fff;
   border-radius: 50%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
   cursor: pointer;
-  transition: all .5s;
+  transition: all 0.5s;
 }
-.card__save_active{
-  background-color: #2BE080;
+.card__save_active {
+  background-color: #2be080;
 }
-.card__duration{
+.card__duration {
   margin-left: 12px;
   font-size: 11px;
   line-height: 14px;
   font-weight: 400;
   display: block;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 @media screen and (max-width: 920px) {
-  .card__image{
-    min-height: 190px;
+  .card__image {
+    height: 190px;
   }
 }
 @media screen and (max-width: 750px) {
-  .card__image{
-    min-height: 160px;
+  .card__image {
+    height: 160px;
   }
 }

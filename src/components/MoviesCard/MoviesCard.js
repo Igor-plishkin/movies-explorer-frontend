@@ -6,10 +6,11 @@ function MoviesCard({ movie }) {
     const hours = Math.trunc(duration / oneHour);
     const minutes = duration % oneHour;
 
-    return `${hours > 0 ? `${hours}ч` : ''}${minutes > 0 ? `${minutes}м` : ''}`
+    return `${hours > 0 ? `${hours}ч ` : ""}${
+      minutes > 0 ? `${minutes}м` : ""
+    }`;
   }
 
-  
   //Функциональность сохранения карточки будет реализована вместе с api, ниже только презентация на одном элементе
   function handleSaveClick() {
     const saveBtn = document.querySelector(".card__save");
@@ -17,10 +18,14 @@ function MoviesCard({ movie }) {
   }
   return (
     <article className="card">
-      <div
-        className="card__image"
-        style={{ backgroundImage: `url(${MOVIES_API_URL + movie.image.url})` }}
-      ></div>
+      <a
+        className="card__link"
+        href={movie.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img className="card__image" src={`${MOVIES_API_URL + movie.image.url}`} alt={movie.nameRU} />
+      </a>
       <div className="card__footer">
         <p className="card__name">{movie.nameRU}</p>
         <button className="card__save" onClick={handleSaveClick}></button>
