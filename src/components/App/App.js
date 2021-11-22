@@ -14,6 +14,7 @@ import React from "react";
 import auth from "../../utils/auth";
 import api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const navigate = useNavigate();
@@ -92,27 +93,27 @@ function App() {
             path="/"
             element={
               <>
-                <Main /> <Footer />
+                <Main />
               </>
             }
           />
-          <Route
+          <ProtectedRoute
             path="/movies"
             element={
               <>
-                <Movies movies={movies} /> <Footer />
+                <Movies movies={movies} />
               </>
             }
           />
-          <Route
+          <ProtectedRoute
             path="/saved-movies"
             element={
               <>
-                <SavedMovies /> <Footer />
+                <SavedMovies /> 
               </>
             }
           />
-          <Route path="/profile" element={<Profile />} />
+          <ProtectedRoute path="/profile" element={<Profile />} />
           <Route
             path="/signup"
             element={<Register onRegistr={handleRegistr} />}
@@ -120,6 +121,7 @@ function App() {
           <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </CurrentUserContext.Provider>
     </div>
   );
