@@ -12,13 +12,14 @@ class Auth {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  registration(email, password) {
+  registration(name, email, password) {
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name,
         email,
         password,
       }),

@@ -12,6 +12,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import getMovies from "../../utils/MoviesApi";
 import React from "react";
 import auth from "../../utils/auth";
+import api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
@@ -59,9 +60,9 @@ function App() {
       });
   }
 
-  function handleRegistr(email, password) {
+  function handleRegistr(name, email, password) {
     auth
-      .registration(email, password)
+      .registration(name, email, password)
       .then((res) => {
         navigate("/signin");
       })
@@ -73,52 +74,53 @@ function App() {
   }
 
   React.useEffect(() => {
-    if (loggedIn){
-      Promise.all([])
+    if (loggedIn) {
+      Promise.all([api.getUser(), getMovies()]).then((userData, moviesRes) => {
+        setCurrentUser(userData.data);
+        setMovies(moviesRes);
+      });
     }
-    getMovies().then((res) => {
-      console.log(res);
-      setMovies(res);
-    });
-  }, []);
+  }, [loggedIn]);
 
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <>
-              <Main /> <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/movies"
-          element={
-            <>
-              <Movies movies={movies} /> <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/saved-movies"
-          element={
-            <>
-              <SavedMovies /> <Footer />
-            </>
-          }
-        />
-        <Route path="/profile" element={<Profile />} />
-        <Route
-          path="/signup"
-          element={<Register onRegistr={handleRegistr} />}
-        />
-        <Route path="/signin" element={<Login onLogin={handleLogin} />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header isLogged={loggedIn}/>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <Main /> <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/movies"
+            element={
+              <>
+                <Movies movies={movies} /> <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <>
+                <SavedMovies /> <Footer />
+              </>
+            }
+          />
+          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/signup"
+            element={<Register onRegistr={handleRegistr} />}
+          />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </CurrentUserContext.Provider>
     </div>
   );
 }
