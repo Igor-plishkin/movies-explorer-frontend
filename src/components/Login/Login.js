@@ -2,7 +2,7 @@ import "./Login.css";
 import Form from "../Form/Form";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Login({onLogin}) {
   return (
     <section className="section register">
       <Link className="header__logo" to="/" />
@@ -13,6 +13,7 @@ function Login() {
         subText="Ещё не зарегистрированы?"
         linkTo="/signup"
         linkText="Регистрация"
+        onSubmit={onLogin}
       />
     </section>
   );

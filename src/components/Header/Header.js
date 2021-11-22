@@ -28,10 +28,10 @@ function Header({ isLogged }) {
 
           {!isLogged ? (
             <div className="header__login">
-              <Link className="header__link header__link_singin" to="/signin">
+              <Link className="header__link header__link_singin" to="/signup">
                 Регистрация
               </Link>
-              <Link className="header__link header__link_singup" to="/signup">
+              <Link className="header__link header__link_singup" to="/signin">
                 Войти
               </Link>
             </div>

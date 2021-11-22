@@ -30,7 +30,7 @@ function MoviesCardList({ movies }) {
   }
 
   React.useEffect(() => {
-    setRenderMovies(movies.slice(0, moviesCount().count));
+    movies && setRenderMovies(movies.slice(0, moviesCount().count));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movies, windowSize]);
 
@@ -40,20 +40,22 @@ function MoviesCardList({ movies }) {
 
   return (
     <>
-      <ul className="movies__list">
-        {!movies ? (
-          <div>has no movies</div>
-        ) : (
-          renderMovies.map((movie) => {
-            return <MoviesCard key={movie.id} movie={movie} />;
-          })
-        )}
-      </ul>
-      {movies.length > renderMovies.length ? (
-        <button className="movies__add-btn" onClick={handleMoviesAdd}>
-          Ещё
-        </button>
-      ) : null}
+      {!movies ? (
+        <p className="movies__not-found">Фильмы не найдены</p>
+      ) : (
+        <>
+          <ul className="movies__list">
+            {renderMovies.map((movie) => {
+              return <MoviesCard key={movie.id} movie={movie} />;
+            })}
+          </ul>
+          {movies.length > renderMovies.length ? (
+            <button className="movies__add-btn" onClick={handleMoviesAdd}>
+              Ещё
+            </button>
+          ) : null}
+        </>
+      )}
     </>
   );
 }

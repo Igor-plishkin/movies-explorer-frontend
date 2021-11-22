@@ -23,7 +23,7 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  setUser(data) {
+  updateUser(name, email) {
     return fetch(`${this.url}/users/me`, {
       method: "PATCH",
       credentials: "include",
@@ -31,8 +31,8 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: data.name,
-        about: data.about,
+        name,
+        email,
       }),
     }).then(this._handleResponse);
   }
@@ -68,12 +68,6 @@ class Api {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(this._handleResponse);
-  }
-  getInitialCards() {
-    return fetch(`${this.url}/cards`, {
-      method: "GET",
-      credentials: "include",
     }).then(this._handleResponse);
   }
 }

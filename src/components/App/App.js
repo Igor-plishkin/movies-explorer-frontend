@@ -8,7 +8,7 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import getMovies from "../../utils/MoviesApi";
 import React from "react";
 import auth from "../../utils/auth";
@@ -32,7 +32,6 @@ function App() {
         .getToken(jwt)
         .then((res) => {
           setLoggedIn(true);
-          navigate("/movies");
         })
         .catch((err) => {
           if (err.status === 400) {
@@ -43,6 +42,17 @@ function App() {
         });
     }
   }, [navigate]);
+
+  function handleUpdateUser(name, email) {
+    api
+      .updateUser(name, email)
+      .then((res) => {
+        setCurrentUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleLogin(email, password) {
     auth
@@ -73,20 +83,39 @@ function App() {
         }
       });
   }
+  function handleSignOut() {
+    auth
+      .signOut()
+      .then((res) => {
+        setCurrentUser({});
+        setLoggedIn(false);
+        localStorage.removeItem("jwt");
+        navigate("/signin");
+      })
+      .catch((err) => {
+        if (err.status === 400) {
+          console.log(err.massage);
+        }
+      });
+  }
 
   React.useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getUser(), getMovies()]).then((userData, moviesRes) => {
-        setCurrentUser(userData.data);
-        setMovies(moviesRes);
-      });
+      Promise.all([api.getUser(), getMovies()])
+        .then(([userData, moviesRes]) => {
+          setCurrentUser(userData.data);
+          setMovies(moviesRes);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [loggedIn]);
 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header isLogged={loggedIn}/>
+        <Header isLogged={loggedIn} />
         <Routes>
           <Route
             exact
@@ -97,23 +126,33 @@ function App() {
               </>
             }
           />
-          <ProtectedRoute
+          {/* Защищенные авторизацией роуты react-router-dom V6 */}
+          <Route
             path="/movies"
             element={
-              <>
-                <Movies movies={movies} />
-              </>
+              loggedIn ? <Movies movies={movies} /> : <Navigate to="/" />
             }
           />
-          <ProtectedRoute
+          <Route
             path="/saved-movies"
+            element={loggedIn ? <SavedMovies /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/profile"
             element={
-              <>
-                <SavedMovies /> 
-              </>
+              loggedIn ? (
+                <Profile
+                  handleSignOut={handleSignOut}
+                  handleUpdateUser={handleUpdateUser}
+                />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           />
-          <ProtectedRoute path="/profile" element={<Profile />} />
+          {/* <ProtectedRoute path="/movies" movies={movies} component={Movies} loggedIn={loggedIn}/>
+          <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn}/>
+          <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn}/> */}
           <Route
             path="/signup"
             element={<Register onRegistr={handleRegistr} />}

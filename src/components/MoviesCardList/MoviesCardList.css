@@ -8,6 +8,12 @@
   column-gap: 20px;
   padding-bottom: 80px;
 }
+.movies__not-found{
+  font-size: 14px;
+  line-height: 18px;
+  color: #a8a8a8;
+  margin: 0;
+}
 @media screen and (max-width: 1279px) {
   .movies__list{
     grid-template-columns: repeat(3, 270px);

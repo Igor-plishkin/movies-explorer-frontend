@@ -5,6 +5,7 @@ class Auth {
     this.baseUrl = baseUrl;
   }
   _handleResponse(res) {
+    console.log(res)
     if (res.ok) {
       return res.json();
     }
@@ -50,7 +51,7 @@ class Auth {
       credentials: "include",
     }).then(this._handleResponse);
   }
-  signout() {
+  signOut() {
     return fetch(`${this.baseUrl}/signout`, {
       method: "DELETE",
       credentials: "include",
