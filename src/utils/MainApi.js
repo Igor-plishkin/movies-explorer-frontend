@@ -1,4 +1,4 @@
-import { BASE_API_URL } from "./constants";
+import { BASE_API_URL, MOVIES_API_URL } from "./constants";
 
 class Api {
   constructor(baseUrl) {
@@ -11,6 +11,16 @@ class Api {
     }
 
     return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  getSavedMovies() {
+    return fetch(`${this.url}/movies`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(this._handleResponse);
   }
 
   getUser() {
@@ -37,33 +47,33 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  setCard(data) {
-    return fetch(`${this.url}/cards`, {
+  saveMovie(movie) {
+    return fetch(`${this.url}/movies`, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: data.name,
-        link: data.link,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        description: movie.description,
+        year: movie.year,
+        image: `${MOVIES_API_URL + movie.image.url}`,
+        trailer: movie.trailerLink,
+        thumbnail: `${MOVIES_API_URL + movie.image.formats.thumbnail.url}`,
+        movieId: movie.id.toString(),
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN || 'null',
+        owner: movie.owner,
       }),
     }).then(this._handleResponse);
   }
 
-  deleteCard(id) {
-    return fetch(`${this.url}/cards/${id}`, {
+  deleteMovie(id) {
+    return fetch(`${this.url}/movies/${id}`, {
       method: "DELETE",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(this._handleResponse);
-  }
-
-  changeLikeCardStatus(id, isLiked) {
-    return fetch(`${this.url}/cards/${id}/likes`, {
-      method: isLiked ? "PUT" : "DELETE",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",

@@ -14,15 +14,31 @@ import React from "react";
 import auth from "../../utils/auth";
 import api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import searchMovies from "../../utils/searchMovie";
+import { shortDuration } from "../../utils/constants";
 
 function App() {
   const navigate = useNavigate();
 
-  const [movies, setMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState(
+    localStorage.getItem("foundMovies")
+      ? JSON.parse(localStorage.getItem("foundMovies"))
+      : []
+  );
+  const [savedMovies, setSavedMovies] = React.useState([]);
 
+  const [isSearchLoading, setSearchLoading] = React.useState(false);
+  const [isShortSerched, setShortSearched] = React.useState(false);
+  const [isSavedShortSerched, setSavedShortSearched] = React.useState(false);
+  const [isNotFound, setIsNotFound] = React.useState(false);
+  const [isSearchError, setIsSearchError] = React.useState(false);
+  const [savedKeyWord, setSavedKeyWord] = React.useState("");
+  const [isOnlyCheckedSearch, setIsOnlyCheckedSearch] = React.useState(false);
+  const [foundSavedMovies, setFoundSavedMovies] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [savedMoviesId, setSavedMoviesId] = React.useState([]);
+
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -42,6 +58,93 @@ function App() {
         });
     }
   }, [navigate]);
+
+  React.useEffect(() => {
+    setIsNotFound(false);
+  }, [loggedIn]);
+
+  React.useEffect(() => {
+    if (localStorage.getItem("foundMovies")) {
+      handleShortSearch();
+    }
+  }, [isShortSerched]);
+
+  React.useEffect(() => {
+    if (savedKeyWord) {
+      handleSearchSavedMovies(savedKeyWord);
+    }
+  }, [savedMovies]);
+
+  React.useEffect(() => {
+    if (savedMovies.length || foundSavedMovies.length) {
+      handleSearchSavedMovies(savedKeyWord);
+    }
+  }, [isSavedShortSerched]);
+
+  function handleSearchSavedMovies(value) {
+    setIsOnlyCheckedSearch(false);
+    if (!value) {
+      setIsOnlyCheckedSearch(true);
+    }
+    setSavedKeyWord(value);
+
+    const movies = searchMovies(savedMovies, value, isSavedShortSerched);
+    setFoundSavedMovies(movies);
+  }
+
+  async function handleSearchMovies(value) {
+    setSearchLoading(true);
+    setIsNotFound(false);
+    setIsSearchError(false);
+
+    try {
+      let movies = JSON.parse(localStorage.getItem("movies"));
+
+      if (!movies) {
+        const films = await getMovies();
+        localStorage.setItem("movies", JSON.stringify(films));
+        movies = JSON.parse(localStorage.getItem("movies"));
+      }
+      const foundMovies = searchMovies(movies, value);
+      localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
+      handleShortSearch();
+    } catch (err) {
+      console.log(err);
+      setIsSearchError(true);
+    } finally {
+      setSearchLoading(false);
+    }
+  }
+
+  function handleShortSearch() {
+    const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
+
+    const shortMovies = foundMovies.filter((movie) => {
+      if (isShortSerched) {
+        if (movie.duration < shortDuration) {
+          return true;
+        }
+      } else if (movie.duration >= shortDuration) {
+        return true;
+      }
+    });
+
+    setMovies(shortMovies);
+    setIsNotFound(!shortMovies.length);
+  }
+
+  function handleSaveMovie(movie) {
+    api
+      .saveMovie(movie)
+      .then((res) => {
+        setSavedMovies([...savedMovies, res]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleDeleteMovie(movieId) {}
 
   function handleUpdateUser(name, email) {
     api
@@ -90,6 +193,9 @@ function App() {
         setCurrentUser({});
         setLoggedIn(false);
         localStorage.removeItem("jwt");
+        localStorage.removeItem("foundMovies");
+        localStorage.removeItem("movies");
+        setMovies([]);
         navigate("/signin");
       })
       .catch((err) => {
@@ -101,10 +207,11 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getUser(), getMovies()])
-        .then(([userData, moviesRes]) => {
+      Promise.all([api.getUser(), api.getSavedMovies()])
+        .then(([userData, savedMoviesRes]) => {
           setCurrentUser(userData.data);
-          setMovies(moviesRes);
+          setSavedMovies(savedMoviesRes.data);
+          setSavedMoviesId(savedMoviesRes.data.map((movie) => movie.movieId))
         })
         .catch((err) => {
           console.log(err);
@@ -130,12 +237,43 @@ function App() {
           <Route
             path="/movies"
             element={
-              loggedIn ? <Movies movies={movies} /> : <Navigate to="/" />
+              loggedIn ? (
+                <Movies
+                  movies={movies}
+                  onSave={handleSaveMovie}
+                  onSearch={handleSearchMovies}
+                  onChangeDuration={setShortSearched}
+                  isLoading={isSearchLoading}
+                  isSaved={false}
+                  isError={isSearchError}
+                  isNotFound={isNotFound}
+                  savedMoviesId={savedMoviesId}
+                />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           />
           <Route
             path="/saved-movies"
-            element={loggedIn ? <SavedMovies /> : <Navigate to="/" />}
+            element={
+              loggedIn ? (
+                <SavedMovies
+                  isSaved={true}
+                  onSearch={handleSearchSavedMovies}
+                  onChangeDuration={setSavedShortSearched}
+                  savedMovies={
+                    savedKeyWord || isOnlyCheckedSearch
+                      ? foundSavedMovies?.length
+                        ? foundSavedMovies
+                        : "NotFound"
+                      : savedMovies
+                  }
+                />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route
             path="/profile"

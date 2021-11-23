@@ -8,7 +8,7 @@ import {
   smallDesktopWidth,
 } from "../../utils/constants";
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, onSave, isSaved, savedMoviesId }) {
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
@@ -40,22 +40,18 @@ function MoviesCardList({ movies }) {
 
   return (
     <>
-      {!movies ? (
-        <p className="movies__not-found">Фильмы не найдены</p>
-      ) : (
-        <>
-          <ul className="movies__list">
-            {renderMovies.map((movie) => {
-              return <MoviesCard key={movie.id} movie={movie} />;
-            })}
-          </ul>
-          {movies.length > renderMovies.length ? (
-            <button className="movies__add-btn" onClick={handleMoviesAdd}>
-              Ещё
-            </button>
-          ) : null}
-        </>
-      )}
+      <ul className="movies__list">
+        {renderMovies.map((movie) => {
+          return (
+            <MoviesCard key={!isSaved ? movie.id : movie._id} movie={movie} handleSaveMovie={onSave} isSaved={isSaved} savedMoviesId={savedMoviesId}/>
+          );
+        })}
+      </ul>
+      {movies.length > renderMovies.length ? (
+        <button className="movies__add-btn" onClick={handleMoviesAdd}>
+          Ещё
+        </button>
+      ) : null}
     </>
   );
 }

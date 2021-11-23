@@ -1,15 +1,22 @@
 import "./SavedMovies.css";
 import SearchForm from "../SearchForm/SearchForm";
-import MoviesCardList from "../MoviesCardList/MoviesCardList"
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies() {
+function SavedMovies({ savedMovies, onSearch, onChangeDuration, isSaved }) {
   return (
     <>
       <section className="section section_search">
-        <SearchForm />
+        <SearchForm
+          handleSubmit={onSearch}
+          onChangeDuration={onChangeDuration}
+        />
       </section>
       <section className="section section_movies">
-        <MoviesCardList />
+        {savedMovies === "NotFound" ? (
+          <p className="movies__not-found">Фильмы не найдены</p>
+        ) : (
+          <MoviesCardList movies={savedMovies} isSaved={isSaved} />
+        )}
       </section>
     </>
   );

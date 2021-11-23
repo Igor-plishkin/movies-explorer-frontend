@@ -4,6 +4,8 @@ export const BASE_API_URL = 'http://localhost:3000';
 
 export const oneHour = 60;
 
+export const shortDuration = 40;
+
 export const desktopWidth = 1280;
 export const smallDesktopWidth = 920;
 export const tabletWidth = 680;
