@@ -1,0 +1,106 @@
+.header {
+  box-sizing: border-box;
+  max-width: 1280px;
+  padding: 18px 70px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.header__logo{
+  background-image: url(../../images/logo.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  transition: transform .8s;
+}
+.header__logo:hover{
+  transform: translateY(10px);
+}
+.header__link{
+  color: #000;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity .5s;
+}
+.header__link:hover{
+  opacity: .8;
+}
+.header__link_singin{
+  margin-right: 30px;
+}
+.header__link_singup{
+  background-color: #2BE080;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
+.header__link_films{
+  font-size: 13px;
+  line-height: 18px;
+  margin-right: 16px;
+}
+.header__link_saved-films{
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.header__link_account{
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  font-size: 13px;
+  line-height: 12px;
+  padding: 10px 10px 10px 11px;
+  border-radius: 40px;
+  transition: box-shadow .5s;
+}
+.header__link_account:hover{
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.3);
+}
+.header__account-icon{
+  margin-left: 14px;
+}
+.header__navigation{
+  margin-left: 60px;
+}
+.header__burger-btn{
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/burger.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+}
+.header__burger-btn_active{
+  opacity: 0;
+}
+@media screen and (max-width: 1024px){
+  .header{
+    padding: 18px 35px;
+  }
+}
+@media screen and (max-width: 768px){
+  .header{
+    padding: 18px 25px;
+  }
+}
+@media screen and (max-width: 425px){
+  .header{
+    padding: 18px 14px;
+  }
+  .header__link{
+    font-size: 10px;
+  }
+  .header__link_singin{
+    margin-right: 14px;
+  }
+  .header__link_singup{
+    padding: 5px 12px;
+  }
+}
