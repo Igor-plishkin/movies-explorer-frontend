@@ -10,8 +10,6 @@
     "react-dom": "^17.0.2",
     "react-router": "^6.0.2",
     "react-scripts": "4.0.3",
-    "validation": "0.0.1",
-    "validator": "^13.7.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
