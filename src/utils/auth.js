@@ -5,7 +5,6 @@ class Auth {
     this.baseUrl = baseUrl;
   }
   _handleResponse(res) {
-    console.log(res)
     if (res.ok) {
       return res.json();
     }
