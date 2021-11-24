@@ -1,11 +1,24 @@
 import Form from "../Form/Form";
 import "./Register.css";
 import { Link } from "react-router-dom";
+import { useFormWithValidation } from "../../utils/useFormWithValidation";
 
-function Register({onRegistr}) {
+function Register({ onRegistr }) {
+  const { values, handleChange, errors, isValid } = useFormWithValidation({
+    email: "",
+    password: "",
+    name: "",
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const { email, password, name } = values;
+    onRegistr(name, email, password);
+  }
+
   return (
     <section className="section register">
-      <Link className="header__logo" to="/"/>
+      <Link className="header__logo" to="/" />
       <h3 className="register__title">Добро пожаловать!</h3>
       <Form
         isRegistration={true}
@@ -13,7 +26,11 @@ function Register({onRegistr}) {
         subText="Уже зарегистрированы?"
         linkTo="/signin"
         linkText="Войти"
-        onSubmit={onRegistr}
+        onSubmit={handleSubmit}
+        values={values}
+        errors={errors}
+        handleChange={handleChange}
+        isValid={isValid}
       />
     </section>
   );

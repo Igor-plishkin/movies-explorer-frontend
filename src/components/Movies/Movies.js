@@ -12,7 +12,8 @@ function Movies({
   isError,
   isNotFound,
   isSaved,
-  savedMoviesId
+  savedMoviesId,
+  onDelete
 }) {
   return (
     <>
@@ -35,7 +36,7 @@ function Movies({
           </p>
         ) : null}
 
-        <MoviesCardList movies={movies} onSave={onSave} isSaved={isSaved} savedMoviesId={savedMoviesId}/>
+        <MoviesCardList movies={movies} onSave={onSave} isSaved={isSaved} savedMoviesId={savedMoviesId} onDelete={onDelete}/>
       </section>
     </>
   );

@@ -39,7 +39,6 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [savedMoviesId, setSavedMoviesId] = React.useState([]);
 
-
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");
 
@@ -137,14 +136,31 @@ function App() {
     api
       .saveMovie(movie)
       .then((res) => {
-        setSavedMovies([...savedMovies, res]);
+        setSavedMovies([...savedMovies, res.data]);
+        setSavedMoviesId([...savedMoviesId, movie.id]);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  function handleDeleteMovie(movieId) {}
+  function handleDeleteMovie(movie) {
+    let movieId = savedMovies.filter(
+      (f) => f.movieId === movie.id || f.data?.movieId === movie.id
+    )[0];
+    if (movieId) {
+      movieId = movieId._id || movieId._id;
+    }
+    api
+    .deleteMovie(movie.owner ? movie._id : movieId)
+    .then((deleted) => {
+      setSavedMovies(savedMovies.filter((film) => film._id !== deleted.data._id));
+      setSavedMoviesId(savedMoviesId.filter((id) => id !== deleted.data.movieId));
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
 
   function handleUpdateUser(name, email) {
     api
@@ -211,7 +227,7 @@ function App() {
         .then(([userData, savedMoviesRes]) => {
           setCurrentUser(userData.data);
           setSavedMovies(savedMoviesRes.data);
-          setSavedMoviesId(savedMoviesRes.data.map((movie) => movie.movieId))
+          setSavedMoviesId(savedMoviesRes.data.map((movie) => movie.movieId));
         })
         .catch((err) => {
           console.log(err);
@@ -241,6 +257,7 @@ function App() {
                 <Movies
                   movies={movies}
                   onSave={handleSaveMovie}
+                  onDelete={handleDeleteMovie}
                   onSearch={handleSearchMovies}
                   onChangeDuration={setShortSearched}
                   isLoading={isSearchLoading}
@@ -261,6 +278,7 @@ function App() {
                 <SavedMovies
                   isSaved={true}
                   onSearch={handleSearchSavedMovies}
+                  onDelete={handleDeleteMovie}
                   onChangeDuration={setSavedShortSearched}
                   savedMovies={
                     savedKeyWord || isOnlyCheckedSearch

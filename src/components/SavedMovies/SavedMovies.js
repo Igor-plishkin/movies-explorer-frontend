@@ -2,7 +2,7 @@ import "./SavedMovies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies({ savedMovies, onSearch, onChangeDuration, isSaved }) {
+function SavedMovies({ savedMovies, onSearch, onChangeDuration, isSaved, onDelete }) {
   return (
     <>
       <section className="section section_search">
@@ -15,7 +15,7 @@ function SavedMovies({ savedMovies, onSearch, onChangeDuration, isSaved }) {
         {savedMovies === "NotFound" ? (
           <p className="movies__not-found">Фильмы не найдены</p>
         ) : (
-          <MoviesCardList movies={savedMovies} isSaved={isSaved} />
+          <MoviesCardList movies={savedMovies} isSaved={isSaved} onDelete={onDelete}/>
         )}
       </section>
     </>

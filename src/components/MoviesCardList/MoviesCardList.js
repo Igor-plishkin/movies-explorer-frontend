@@ -8,7 +8,7 @@ import {
   smallDesktopWidth,
 } from "../../utils/constants";
 
-function MoviesCardList({ movies, onSave, isSaved, savedMoviesId }) {
+function MoviesCardList({ movies, onSave, isSaved, savedMoviesId, onDelete }) {
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
@@ -43,7 +43,14 @@ function MoviesCardList({ movies, onSave, isSaved, savedMoviesId }) {
       <ul className="movies__list">
         {renderMovies.map((movie) => {
           return (
-            <MoviesCard key={!isSaved ? movie.id : movie._id} movie={movie} handleSaveMovie={onSave} isSaved={isSaved} savedMoviesId={savedMoviesId}/>
+            <MoviesCard
+              key={isSaved ? movie._id : movie.id}
+              movie={movie}
+              handleSaveMovie={onSave}
+              isSaved={isSaved}
+              savedMoviesId={savedMoviesId}
+              onDelete={onDelete}
+            />
           );
         })}
       </ul>

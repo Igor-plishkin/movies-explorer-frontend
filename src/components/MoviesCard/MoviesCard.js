@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
 import { MOVIES_API_URL, oneHour } from "../../utils/constants";
 import "./MoviesCard.css";
 
-function MoviesCard({ movie, handleSaveMovie, isSaved, savedMoviesId }) {
-  const [isSavedCard, setSavedCard] = useState(false);
-
-  useEffect(() => {
-    if (!isSaved) {
-      setSavedCard(savedMoviesId.some((i) => i === movie.id));
+function MoviesCard({
+  movie,
+  handleSaveMovie,
+  isSaved,
+  savedMoviesId,
+  onDelete,
+}) {
+  const handleIsLike = (card, savedCardsId) => {
+    if (card.id) {
+      return savedCardsId.some((el) => el === card.id);
     }
-  }, [isSavedCard]);
+  };
+
+  const isLiked = handleIsLike(movie, savedMoviesId);
+  const cardLikeButtonClassName = isSaved
+    ? "card__delete"
+    : `card__save ${isLiked ? "card__save_active" : ""}`;
 
   function countDuration(duration) {
     const hours = Math.trunc(duration / oneHour);
@@ -21,9 +29,13 @@ function MoviesCard({ movie, handleSaveMovie, isSaved, savedMoviesId }) {
   }
 
   function handleSaveClick() {
-    setSavedCard(true);
-
-    handleSaveMovie(movie);
+    if (isSaved) {
+      onDelete(movie);
+    } else if (isLiked) {
+      onDelete(movie);
+    } else {
+      handleSaveMovie(movie);
+    }
   }
   return (
     <article className="card">
@@ -41,8 +53,9 @@ function MoviesCard({ movie, handleSaveMovie, isSaved, savedMoviesId }) {
       </a>
       <div className="card__footer">
         <p className="card__name">{movie.nameRU}</p>
+
         <button
-          className={`card__save ${isSavedCard && "card__save_active"}`}
+          className={cardLikeButtonClassName}
           onClick={handleSaveClick}
         ></button>
       </div>

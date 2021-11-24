@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./Form.css";
-import React from "react";
 
 function Form({
   isRegistration,
@@ -9,33 +8,13 @@ function Form({
   linkTo,
   subText,
   onSubmit,
+  handleChange,
+  values,
+  errors,
+  isValid
 }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [name, setName] = React.useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    isRegistration
-      ? onSubmit(name, email, password)
-      : onSubmit(email, password);
-  }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={onSubmit}>
       {isRegistration && (
         <div className="form__field">
           <label className="form__label" htmlFor="formName">
@@ -45,11 +24,15 @@ function Form({
             className="form__input"
             type="text"
             required
+            minLength="2"
             id="formName"
-            onChange={handleNameChange}
-            value={name}
+            name="name"
+            onChange={handleChange}
+            value={values.name}
           />
-          <span className="form__error">Что-то пошло не так...</span>
+          {errors.name ? (
+            <span className="form__error">{errors.name}</span>
+          ) : null}
         </div>
       )}
       <div className="form__field">
@@ -60,14 +43,14 @@ function Form({
           className="form__input"
           type="email"
           required
+          name="email"
           id="formEmail"
-          onChange={handleEmailChange}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
         />
-        {/* Формы без валидации, класс _active добавлен для примера */}
-        <span className="form__error form__error_active">
-          Что-то пошло не так...
-        </span>
+        {errors.email ? (
+          <span className="form__error">{errors.email}</span>
+        ) : null}
       </div>
       <div
         className={`form__field ${
@@ -84,14 +67,16 @@ function Form({
           type="password"
           required
           id="formPass"
-          onChange={handlePasswordChange}
-          value={password}
+          name="password"
+          onChange={handleChange}
+          value={values.password}
+          minLength="8"
         />
-        <span className="form__error form__error_active">
-          Что-то пошло не так...
-        </span>
+        {errors.password ? (
+          <span className="form__error">{errors.password}</span>
+        ) : null}
       </div>
-      <button className="form__button">{buttonText}</button>
+      <button className="form__button" disabled={!isValid}>{buttonText}</button>
       <p className="form__sub-text">
         {subText}
         <Link className="form__link" to={linkTo}>
