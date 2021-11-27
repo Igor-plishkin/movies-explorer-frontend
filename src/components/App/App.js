@@ -53,15 +53,17 @@ function App() {
   const [isUpdateSuccessful, setIsUpdateSuccessful] = React.useState(false);
 
   const tokenCheck = React.useCallback(() => {
-    auth
-      .getToken()
-      .then((res) => {
-        setLoggedIn(true);
-        history.push(pathname);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem("jwt")) {
+      auth
+        .getToken()
+        .then((res) => {
+          setLoggedIn(true);
+          history.push(pathname);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [history]);
 
   React.useEffect(() => {
