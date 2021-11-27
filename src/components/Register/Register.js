@@ -1,18 +1,26 @@
+import React from "react";
 import Form from "../Form/Form";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
 
-function Register({ onRegistr }) {
+function Register({ onRegistr, setIsFormSent, isFormSent, isError, setError }) {
+  const history = useHistory();
+
   const { values, handleChange, errors, isValid } = useFormWithValidation({
     email: "",
     password: "",
     name: "",
   });
 
+  React.useEffect(() => {
+    setError(false);
+  }, [history]);
+
   function handleSubmit(e) {
     e.preventDefault();
     const { email, password, name } = values;
+    setIsFormSent(true);
     onRegistr(name, email, password);
   }
 
@@ -30,7 +38,9 @@ function Register({ onRegistr }) {
         values={values}
         errors={errors}
         handleChange={handleChange}
+        isFormSent={isFormSent}
         isValid={isValid}
+        isError={isError}
       />
     </section>
   );

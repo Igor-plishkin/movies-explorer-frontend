@@ -40,13 +40,9 @@ class Auth {
       credentials: "include",
     }).then(this._handleResponse);
   }
-  getToken(jwt) {
+  getToken() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      },
       credentials: "include",
     }).then(this._handleResponse);
   }

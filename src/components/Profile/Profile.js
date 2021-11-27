@@ -3,7 +3,16 @@ import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
 
-function Profile({ handleSignOut, handleUpdateUser }) {
+function Profile({
+  handleSignOut,
+  handleUpdateUser,
+  setIsFormSent,
+  isFormSent,
+  isSuccess,
+  isError,
+  setSuccess,
+  setError,
+}) {
   const { name, email } = useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid } = useFormWithValidation({
     name,
@@ -20,7 +29,9 @@ function Profile({ handleSignOut, handleUpdateUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    setSuccess('');
+    setError('');
+    setIsFormSent(true);
     handleUpdateUser(values.name, values.email);
   }
 
@@ -55,21 +66,33 @@ function Profile({ handleSignOut, handleUpdateUser }) {
               id="email"
               name="email"
               value={values.email}
+              pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
               onChange={handleChange}
               required
               minLength="2"
               maxLength="40"
             />
             {errors.email ? (
-              <span className="profile__error profile__error_email">{errors.email}</span>
+              <span className="profile__error profile__error_email">
+                {errors.email}
+              </span>
             ) : null}
           </label>
         </div>
-
+        {isSuccess ? (
+          <span className="profile__notion profile__notion_success">
+            Ваш профиль успешно обновился!
+          </span>
+        ) : null}
+        {isError ? (
+          <span className="profile__notion profile__notion_error">
+            При обновлении профиля произошла ошибка.
+          </span>
+        ) : null}
         <button
           className="profile__edit-btn"
           type="submit"
-          disabled={!hasChanges && !isValid}
+          disabled={!hasChanges || !isValid || isFormSent}
         >
           Редактировать
         </button>

@@ -3,6 +3,9 @@
   padding: 74px 30px 70px;
   margin: 0 auto;
 }
+.profile__form{
+  position: relative;
+}
 .profile__title {
   text-align: center;
   font-size: 24px;
@@ -44,6 +47,21 @@
   padding: 0;
   cursor: pointer;
   transition: opacity 0.5s;
+}
+.profile__notion{
+  font-style: 14px;
+  line-height: 18px;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.profile__notion_error{
+  color: #ee3465;
+}
+.profile__notion_success{
+  color: green;
 }
 .profile__edit-btn {
   font-weight: 400;

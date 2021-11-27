@@ -11,7 +11,9 @@ function Form({
   handleChange,
   values,
   errors,
-  isValid
+  isValid,
+  isFormSent,
+  isError,
 }) {
   return (
     <form className="form" onSubmit={onSubmit}>
@@ -44,6 +46,7 @@ function Form({
           type="email"
           required
           name="email"
+          pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
           id="formEmail"
           onChange={handleChange}
           value={values.email}
@@ -76,7 +79,14 @@ function Form({
           <span className="form__error">{errors.password}</span>
         ) : null}
       </div>
-      <button className="form__button" disabled={!isValid}>{buttonText}</button>
+      {isError ? (
+        <span className="form__submit-error">
+          {isError.message ? isError.message : "Что то пошло не так"}
+        </span>
+      ) : null}
+      <button className="form__button" disabled={!isValid || isFormSent}>
+        {buttonText}
+      </button>
       <p className="form__sub-text">
         {subText}
         <Link className="form__link" to={linkTo}>

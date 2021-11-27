@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import accountIcon from "../../images/account-icon.svg";
 import "./Header.css";
 import React, { useState } from "react";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { useLocation } from "react-router";
 
 function Header({ isLogged }) {
   const { pathname } = useLocation();
@@ -16,8 +15,7 @@ function Header({ isLogged }) {
   function handleCloseMenu() {
     setOpenMenu(false);
   }
-  // заглушка
-  // const isLogged = (pathname !== "/");
+
   const mobile = window.matchMedia("(max-width: 1023px)").matches;
 
   return (
