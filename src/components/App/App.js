@@ -53,7 +53,6 @@ function App() {
   const [isUpdateSuccessful, setIsUpdateSuccessful] = React.useState(false);
 
   const tokenCheck = React.useCallback(() => {
-    if (localStorage.getItem("jwt")) {
       auth
         .getToken()
         .then((res) => {
@@ -63,7 +62,6 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-    }
   }, [history]);
 
   React.useEffect(() => {
