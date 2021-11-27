@@ -53,17 +53,20 @@ function App() {
   const [isUpdateSuccessful, setIsUpdateSuccessful] = React.useState(false);
 
   const tokenCheck = React.useCallback(() => {
-    auth
-      .getToken()
-      .then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          history.push(pathname);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth
+        .getToken(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            history.push(pathname);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [history]);
 
   React.useEffect(() => {
@@ -216,6 +219,7 @@ function App() {
     auth
       .login(email, password)
       .then((res) => {
+        localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         history.push("/movies");
       })
@@ -246,8 +250,9 @@ function App() {
     auth
       .signOut()
       .then((res) => {
-        setCurrentUser({});
+        setCurrentUser({ email: "", name: "" });
         setLoggedIn(false);
+        localStorage.removeItem("jwt");
         localStorage.removeItem("foundMovies");
         localStorage.removeItem("movies");
         setMovies([]);
