@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import accountIcon from "../../images/account-icon.svg";
 import "./Header.css";
 import React, { useState } from "react";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { useLocation } from "react-router";
 
-function Header() {
+function Header({ isLogged }) {
   const { pathname } = useLocation();
 
   const [isOpenMenu, setOpenMenu] = useState(false);
@@ -16,22 +15,21 @@ function Header() {
   function handleCloseMenu() {
     setOpenMenu(false);
   }
-  // заглушка
-  const isLogged = (pathname !== "/");
+
   const mobile = window.matchMedia("(max-width: 1023px)").matches;
 
   return (
     <>
       {pathname !== "/signin" && pathname !== "/signup" ? (
         <header className="header">
-          <Link className="header__logo" to="/"/>
+          <Link className="header__logo" to="/" />
 
           {!isLogged ? (
             <div className="header__login">
-              <Link className="header__link header__link_singin" to="/signin">
+              <Link className="header__link header__link_singin" to="/signup">
                 Регистрация
               </Link>
-              <Link className="header__link header__link_singup" to="/signup">
+              <Link className="header__link header__link_singup" to="/signin">
                 Войти
               </Link>
             </div>

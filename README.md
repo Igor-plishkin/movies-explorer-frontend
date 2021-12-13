@@ -1,3 +1,3 @@
 #Фронтэнд для movie-explorer
 
-Ссылка на [сайт](http://plisha-movies.nomoredomains.rocks/)
+Ссылка на [сайт](https://plisha-movies.nomoredomains.rocks/)
