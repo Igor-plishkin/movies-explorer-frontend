@@ -184,6 +184,7 @@
   opacity: .7;
 }
 .student__image {
+  object-fit: contain;
   border-radius: 10px;
   width: 270px;
   height: 327px;
