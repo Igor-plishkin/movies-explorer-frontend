@@ -74,17 +74,13 @@ function Main() {
         <div className="horizontal-line" />
         <div className="student__wrapper">
           <div className="student__content">
-            <p className="student__name">Виталий</p>
-            <p className="student__position">Фронтенд-разработчик, 30 лет</p>
+            <p className="student__name">Игорь</p>
+            <p className="student__position">Фронтенд-разработчик, 23 года</p>
             <p className="student__description">
-              Я родился и живу в Саратове, закончил факультет экономики СГУ. У
-              меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
-              бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
-              Контур». После того, как прошёл курс по веб-разработке, начал
-              заниматься фриланс-заказами и ушёл с постоянной работы.
+              Я родился и живу в Тюмени, закончил ТИУ по профессии приборостроение в 2020 году. Сразу после университета устроился по специальности в ООО НПП "Симплекс". С марта 2021 работаю на должности инженера - руководителя камеральной группы. Во время учебы изучал C/C++ для программирования микроконтроллеров и приборов, и загорелся идей стать разработчиком. С января 2021 года учился на курсе веб-разработчика Яндекс.Практикум. Профессия меня поглотила, стараюсь достичь больших успехов в этой области. В свободное время люблю изучать новое: читать книги, изучать языки, на очереди Немецкий. Занимаюсь баскетболом больше 8 лет, это моя страсть.
             </p>
-            <a className="student__link" href="https://vk.com/amazlngman">
-              vk
+            <a className="student__link" href="https://t.me/Plisha_jr">
+              telegram
             </a>
             <a
               className="student__link"
@@ -123,7 +119,7 @@ function Main() {
             <p className="portfolio__name">Одностраничное приложение</p>
             <a
               className="portfolio__link"
-              href="https://github.com/Igor-plishkin/react-mesto-api-full"
+              href="https://plisha-jr.nomoredomains.rocks/"
             ></a>
           </li>
         </ul>
